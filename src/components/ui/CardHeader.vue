@@ -1,0 +1,18 @@
+<!-- src/components/ui/CardHeader.vue -->
+<template>
+  <div :class="cn('flex flex-col space-y-1.5 p-6', props.class)">
+    <slot />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { cn } from '@/utils/cn'
+
+interface CardHeaderProps {
+  class?: string
+}
+
+const props = withDefaults(defineProps<CardHeaderProps>(), {
+  class: ''
+})
+</script>
