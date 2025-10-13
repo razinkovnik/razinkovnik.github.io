@@ -1,5 +1,10 @@
 <!-- src/App.vue -->
 <template>
+  <HeadMeta
+    title="Разиньков Никита Николаевич - Инженер-проектировщик нефтегазовых объектов"
+    description="Более 20 лет опыта в проектировании систем газоснабжения, магистральных и распределительных трубопроводов, объектов добычи и хранения нефти и газа."
+    keywords="инженер-проектировщик, нефтегазовые объекты, газоснабжение, AutoCAD Plant 3D, Python, проектирование"
+  />
   <div class="min-h-screen bg-background text-foreground">
     <div class="container mx-auto max-w-4xl py-12 px-4">
       <!-- Шапка: Аватар + Инфо -->
@@ -29,17 +34,24 @@
       </header>
       <Separator class="my-8" />
       <!-- Опыт работы -->
-      <section class="mb-12">
+      <section class="mb-12" itemscope itemtype="https://schema.org/Person">
         <h2 class="text-2xl font-semibold mb-6">Опыт работы</h2>
-        <Card class="mb-4">
+        <Card
+          class="mb-4"
+          itemprop="hasOccupation"
+          itemscope
+          itemtype="https://schema.org/Occupation"
+        >
           <CardHeader>
             <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <CardTitle class="text-xl font-semibold"
-                >Ведущий инженер-проектировщик / Руководитель отдела проектирования</CardTitle
+              <CardTitle class="text-xl font-semibold" itemprop="name">
+                Ведущий инженер-проектировщик / Руководитель отдела проектирования
+              </CardTitle>
+              <span class="text-sm text-muted-foreground" itemprop="datePosted"
+                >2005 – настоящее время</span
               >
-              <span class="text-sm text-muted-foreground">2005 – настоящее время</span>
             </div>
-            <p class="text-muted-foreground text-base">
+            <p class="text-muted-foreground text-base" itemprop="description">
               АО «Газпроектинжиниринг», ООО «Газпроектсервис», НИПИ «Инжгео», ООО «Трансэнергострой»
             </p>
           </CardHeader>
@@ -71,7 +83,6 @@
       </section>
       <Separator class="my-8" />
       <!-- Портфолио -->
-      <!-- Портфолио -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mb-6">Портфолио проектов</h2>
         <p class="text-muted-foreground mb-6">
@@ -86,8 +97,10 @@
           >
             <!-- Заголовок группы -->
             <button
-              class="flex w-full items-center justify-between bg-card px-4 py-3 text-left font-medium text-card-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              class="flex w-full items-center justify-between bg-card px-4 py-3 text-left font-medium text-card-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               @click="toggleGroup(idx)"
+              :aria-expanded="openGroups[idx]"
+              :aria-controls="`group-content-${idx}`"
             >
               <div>
                 <span class="font-medium">{{ group.title }}</span>
@@ -114,7 +127,7 @@
             </button>
 
             <!-- Содержимое (сворачивается) -->
-            <div v-show="openGroups[idx]" class="p-4 border-t">
+            <div v-show="openGroups[idx]" :id="`group-content-${idx}`" class="p-4 border-t">
               <p class="text-sm text-muted-foreground mb-2">{{ group.summary }}</p>
               <ul class="list-disc pl-5 mb-4 text-sm text-muted-foreground">
                 <li v-for="(feat, fIdx) in group.features" :key="fIdx">{{ feat }}</li>
@@ -211,14 +224,13 @@
     <ProjectModal
       v-if="selectedProject"
       :project="selectedProject"
-      :is-dark-theme="isDark"
       @close="selectedProject = null"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import {
   Avatar,
   AvatarImage,
@@ -232,30 +244,34 @@ import {
   Button,
 } from '@/components/ui'
 import ProjectModal from '@/components/ui/ProjectModal.vue'
+import type { Project, ProjectGroup } from '@/types'
+import HeadMeta from '@/components/seo/HeadMeta.vue'
 
 // Импорт данных из JSON
 import projects from '@/data/projects.json'
-import projectGroups from '@/data/projectGroups.json'
+import projectGroupsData from '@/data/projectGroups.json'
 import skills from '@/data/skills.json'
+
+// Типизированные данные
+const projectGroups = projectGroupsData as ProjectGroup[]
 
 // Реактивные переменные
 const isDark = ref(false)
-const selectedProject = ref<any>(null)
-// После объявления других ref
-const openGroups = ref<Record<number, boolean>>({}) // все группы изначально свёрнуты
+const selectedProject = ref<Project | null>(null)
+const openGroups = ref<Record<number, boolean>>({})
 const showAll = ref<Record<number, boolean>>({})
 
 function toggleShowAll(index: number) {
   showAll.value[index] = !showAll.value[index]
 }
 
-function visibleExamples(group: any, index: number): string[] {
+function visibleExamples(group: ProjectGroup, index: number): string[] {
   const limit = 4
   return showAll.value[index] ? group.examples : group.examples.slice(0, limit)
 }
 
-function findProjectByName(name: string) {
-  return projects.find(p => p.name === name)
+function findProjectByName(name: string): Project | undefined {
+  return (projects as Project[]).find((p) => p.name === name)
 }
 
 function toggleGroup(index: number) {
@@ -277,12 +293,25 @@ function toggleDark() {
   setTheme(!isDark.value)
 }
 
-function openProjectModal(project: any) {
+function openProjectModal(project: Project | undefined) {
   if (project) selectedProject.value = project
 }
 
-// Инициализация темы
+// Динамический title
+const pageTitle = ref('Разиньков Никита - Инженер-проектировщик нефтегазовых объектов')
+
 onMounted(() => {
+  document.title = pageTitle.value
+
+  // Обновляем meta description динамически
+  const metaDescription = document.querySelector('meta[name="description"]')
+  if (metaDescription) {
+    metaDescription.setAttribute(
+      'content',
+      'Инженер-проектировщик с 20+ летним опытом. Специализация: AutoCAD Plant 3D, Python, проектирование нефтегазовых объектов.',
+    )
+  }
+  // Инициализация темы
   const saved = localStorage.theme
   if (saved === 'dark' || saved === 'light') {
     setTheme(saved === 'dark')

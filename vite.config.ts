@@ -12,5 +12,18 @@ export default defineConfig({
     alias: {
       '@': '/src'
     }
+  },
+  // Добавьте для корректного размещения статических файлов
+  build: {
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  // Для пререндеринга (если нужно SSR в будущем)
+  ssr: {
+    noExternal: ['vue', '@headlessui/vue']
   }
 })
