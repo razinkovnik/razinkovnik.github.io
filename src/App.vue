@@ -5,117 +5,129 @@
     description="Более 20 лет опыта в проектировании систем газоснабжения, магистральных и распределительных трубопроводов, объектов добычи и хранения нефти и газа."
     keywords="инженер-проектировщик, нефтегазовые объекты, газоснабжение, AutoCAD Plant 3D, Python, проектирование"
   />
+
   <div class="min-h-screen bg-background text-foreground">
-    <div class="container mx-auto max-w-4xl py-12 px-4">
-      <!-- Шапка: Аватар + Инфо -->
-      <header class="flex flex-col items-center md:flex-row md:items-start gap-6 mb-12">
-        <Avatar class="h-24 w-24">
-          <AvatarImage src="https://placehold.co/128?text=НР" alt="Разиньков Никита" />
-          <AvatarFallback>НР</AvatarFallback>
-        </Avatar>
-        <div class="text-center md:text-left">
-          <h1 class="text-3xl font-bold">Разиньков Никита Николаевич</h1>
-          <p class="text-xl text-muted-foreground mt-1">
-            Инженер-проектировщик нефтегазовых объектов
-          </p>
-          <p class="mt-3 max-w-prose text-muted-foreground text-base">
-            Более 20 лет опыта в проектировании систем газоснабжения, магистральных и
-            распределительных трубопроводов, объектов добычи и хранения нефти и газа.
-            Специализируюсь на автоматизации проектирования (Python), управлении проектными группами
-            и сопровождении проектов до прохождения экспертизы.
-          </p>
-          <div class="mt-4 flex justify-center md:justify-start gap-2 flex-wrap">
-            <Badge variant="secondary">AutoCAD Plant 3D</Badge>
-            <Badge variant="secondary">Python</Badge>
-            <Badge variant="secondary">Газоснабжение</Badge>
-            <Badge variant="outline">Руководство проектами</Badge>
+    <!-- Hero Section с градиентом -->
+    <section class="gradient-bg text-white">
+      <div class="container mx-auto max-w-4xl py-16 px-4">
+        <div class="flex flex-col md:flex-row items-center gap-8 fade-in-up">
+          <div class="relative">
+            <Avatar class="h-32 w-32 ring-4 ring-white/20 ring-offset-4 ring-offset-primary/10">
+              <AvatarImage src="/images/avatar.png" alt="Разиньков Никита" />
+              <AvatarFallback class="bg-white/20 text-white">НР</AvatarFallback>
+            </Avatar>
+            <div
+              class="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-1 ring-2 ring-white"
+            >
+              <div class="w-4 h-4 rounded-full bg-green-400"></div>
+            </div>
+          </div>
+
+          <div class="text-center md:text-left flex-1">
+            <h1 class="text-4xl font-bold mb-2">Разиньков Никита Николаевич</h1>
+            <p class="text-xl text-white/90 mb-4">Инженер-проектировщик нефтегазовых объектов</p>
+            <p class="text-lg text-white/80 max-w-2xl leading-relaxed">
+              Более 20 лет опыта в проектировании систем газоснабжения, магистральных и
+              распределительных трубопроводов, объектов добычи и хранения нефти и газа.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+              <Badge variant="secondary" class="bg-white/20 text-white border-white/30">
+                🎯 20+ лет опыта
+              </Badge>
+              <Badge variant="secondary" class="bg-white/20 text-white border-white/30">
+                📐 AutoCAD Plant 3D
+              </Badge>
+              <Badge variant="secondary" class="bg-white/20 text-white border-white/30">
+                🐍 Python
+              </Badge>
+              <Badge variant="secondary" class="bg-white/20 text-white border-white/30">
+                👨‍💼 Руководство проектами
+              </Badge>
+            </div>
           </div>
         </div>
-      </header>
-      <Separator class="my-8" />
-      <!-- Опыт работы -->
-      <section class="mb-12" itemscope itemtype="https://schema.org/Person">
-        <h2 class="text-2xl font-semibold mb-6">Опыт работы</h2>
-        <Card
-          class="mb-4"
-          itemprop="hasOccupation"
-          itemscope
-          itemtype="https://schema.org/Occupation"
-        >
-          <CardHeader>
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <CardTitle class="text-xl font-semibold" itemprop="name">
+      </div>
+    </section>
+
+    <div class="container mx-auto max-w-4xl py-12 px-4">
+      <!-- Опыт работы с улучшенными карточками -->
+      <section class="mb-16 fade-in-up">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1 h-8 bg-primary rounded-full"></div>
+          <h2 class="text-2xl font-bold">Опыт работы</h2>
+        </div>
+
+        <Card class="card-hover p-6">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <div>
+              <CardTitle class="text-xl font-semibold text-primary">
                 Ведущий инженер-проектировщик / Руководитель отдела проектирования
               </CardTitle>
-              <span class="text-sm text-muted-foreground" itemprop="datePosted"
-                >2005 – настоящее время</span
-              >
+              <p class="text-muted-foreground mt-1">
+                АО «Газпроектинжиниринг», ООО «Газпроектсервис», НИПИ «Инжгео», ООО
+                «Трансэнергострой»
+              </p>
             </div>
-            <p class="text-muted-foreground text-base" itemprop="description">
-              АО «Газпроектинжиниринг», ООО «Газпроектсервис», НИПИ «Инжгео», ООО «Трансэнергострой»
-            </p>
-          </CardHeader>
-          <CardContent>
-            <ul class="list-disc pl-5 space-y-1 text-muted-foreground text-base">
-              <li>
-                Разработка проектной и рабочей документации для систем газоснабжения, магистральных
-                и распределительных трубопроводов
-              </li>
-              <li>
-                Проектирование объектов обустройства нефтяных месторождений: кусты скважин, УПН,
-                УПСВ, КНС, нефтебазы, терминалы
-              </li>
-              <li>
-                Подготовка и сопровождение проектов в государственной и ведомственной экспертизе
-                (десятки успешно пройденных)
-              </li>
-              <li>
-                Автоматизация черчения и документооборота с использованием Python и AutoCAD API
-              </li>
-              <li>
-                Руководство проектной группой (5–10 инженеров): распределение задач, контроль
-                сроков, обучение новых сотрудников
-              </li>
-              <li>Координация междисциплинарных работ в гибридном и удалённом форматах</li>
-            </ul>
-          </CardContent>
+            <span
+              class="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mt-2 md:mt-0"
+            >
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              2005 – настоящее время
+            </span>
+          </div>
+
+          <ul class="grid gap-3 mt-4">
+            <li
+              v-for="(item, index) in experienceItems"
+              :key="index"
+              class="flex items-start gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors"
+            >
+              <div class="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <span class="text-muted-foreground">{{ item }}</span>
+            </li>
+          </ul>
         </Card>
       </section>
-      <Separator class="my-8" />
-      <!-- Портфолио -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6">Портфолио проектов</h2>
-        <p class="text-muted-foreground mb-6">
-          Реализовано более <strong>20 проектов</strong> в различных регионах России.
-        </p>
 
-        <div class="space-y-4">
-          <div
-            v-for="(group, idx) in projectGroups"
-            :key="idx"
-            class="border rounded-lg overflow-hidden"
-          >
-            <!-- Заголовок группы -->
+      <!-- Портфолио с улучшенным аккордеоном -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1 h-8 bg-primary rounded-full"></div>
+          <h2 class="text-2xl font-bold">Портфолио проектов</h2>
+        </div>
+
+        <div class="space-y-4 stagger-animation">
+          <Card v-for="(group, idx) in projectGroups" :key="idx" class="card-hover overflow-hidden">
             <button
-              class="flex w-full items-center justify-between bg-card px-4 py-3 text-left font-medium text-card-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              class="flex w-full items-center justify-between p-6 text-left hover:bg-accent/30 transition-colors"
               @click="toggleGroup(idx)"
-              :aria-expanded="openGroups[idx]"
-              :aria-controls="`group-content-${idx}`"
             >
-              <div>
-                <span class="font-medium">{{ group.title }}</span>
-                <p class="text-sm text-muted-foreground mt-1">
-                  Примеры из {{ group.examples.length }} проектов
-                </p>
+              <div class="flex items-center gap-4">
+                <div class="text-center">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex flex-col items-center justify-center text-white relative"
+                  >
+                    <span class="font-bold text-lg leading-none">{{ group.examples.length }}</span>
+                    <span class="text-xs leading-none mt-1">из многих</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-lg">{{ group.title }}</h3>
+                  <p class="text-sm text-muted-foreground mt-1">
+                    Регионы: {{ getRegions(group).join(', ') }}
+                  </p>
+                  <p class="text-xs text-primary mt-1 font-medium">
+                    Показаны ключевые проекты из портфолио
+                  </p>
+                </div>
               </div>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 transition-transform duration-200 text-muted-foreground"
+                :class="{ 'rotate-180': openGroups[idx] }"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                class="h-4 w-4 transition-transform duration-200"
-                :class="{ 'rotate-180': openGroups[idx] }"
-                aria-hidden="true"
               >
                 <path
                   stroke-linecap="round"
@@ -126,100 +138,183 @@
               </svg>
             </button>
 
-            <!-- Содержимое (сворачивается) -->
-            <div v-show="openGroups[idx]" :id="`group-content-${idx}`" class="p-4 border-t">
-              <p class="text-sm text-muted-foreground mb-2">{{ group.summary }}</p>
-              <ul class="list-disc pl-5 mb-4 text-sm text-muted-foreground">
-                <li v-for="(feat, fIdx) in group.features" :key="fIdx">{{ feat }}</li>
-              </ul>
+            <div v-show="openGroups[idx]" class="px-6 pb-6 border-t pt-6">
+              <p class="text-muted-foreground mb-4 leading-relaxed">{{ group.summary }}</p>
 
-              <!-- Примеры (макс. 4 по умолчанию) -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <Card
-                  v-for="(example, eIdx) in visibleExamples(group, idx)"
-                  :key="eIdx"
-                  class="flex flex-col"
+              <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div
+                  v-for="(feat, fIdx) in group.features"
+                  :key="fIdx"
+                  class="flex items-start gap-3 p-3 bg-accent/30 rounded-lg"
                 >
-                  <CardHeader class="pb-2">
-                    <CardTitle class="text-base font-medium">{{ example }}</CardTitle>
-                  </CardHeader>
-                  <CardContent class="flex-grow pt-0"></CardContent>
-                  <div class="p-4 pt-0">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      @click="openProjectModal(findProjectByName(example))"
-                    >
-                      Подробнее
-                    </Button>
-                  </div>
-                </Card>
+                  <span class="text-primary mt-0.5">✓</span>
+                  <span class="text-sm">{{ feat }}</span>
+                </div>
               </div>
 
-              <!-- Кнопка "Показать ещё" -->
+              <div class="grid gap-3">
+                <div
+                  v-for="(example, eIdx) in visibleExamples(group, idx)"
+                  :key="eIdx"
+                  class="flex items-center justify-between p-3 border rounded-lg hover:border-primary transition-colors"
+                >
+                  <span class="font-medium">{{ example }}</span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    @click="openProjectModal(findProjectByName(example))"
+                    class="btn-modern !py-1 !px-3 text-xs"
+                  >
+                    Подробнее
+                  </Button>
+                </div>
+              </div>
+
               <div v-if="group.examples.length > 4" class="mt-4 text-center">
-                <Button variant="ghost" size="sm" @click="toggleShowAll(idx)">
-                  {{ showAll[idx] ? 'Скрыть' : `Показать все (${group.examples.length})` }}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  @click="toggleShowAll(idx)"
+                  class="text-primary hover:text-primary/80"
+                >
+                  {{ showAll[idx] ? 'Скрыть' : `Показать все ${group.examples.length} проектов` }}
                 </Button>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </section>
-      <Separator class="my-8" />
-      <!-- Навыки -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6">Ключевые навыки</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          <div
-            v-for="skill in skills"
-            :key="skill"
-            class="rounded-md border border-border bg-card p-3 text-center text-sm text-card-foreground"
-          >
-            {{ skill }}
-          </div>
+
+      <!-- Навыки с визуальными индикаторами -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1 h-8 bg-primary rounded-full"></div>
+          <h2 class="text-2xl font-bold">Ключевые навыки</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card class="p-6">
+            <h3 class="text-lg font-semibold text-primary mb-4 border-b pb-2">Проектирование</h3>
+            <div class="flex flex-wrap gap-2">
+              <Badge v-for="skill in designSkills" :key="skill" variant="secondary" class="text-sm">
+                {{ skill }}
+              </Badge>
+            </div>
+          </Card>
+
+          <Card class="p-6">
+            <h3 class="text-lg font-semibold text-primary mb-4 border-b pb-2">Технологии</h3>
+            <div class="flex flex-wrap gap-2">
+              <Badge v-for="skill in techSkills" :key="skill" variant="secondary" class="text-sm">
+                {{ skill }}
+              </Badge>
+            </div>
+          </Card>
         </div>
       </section>
-      <Separator class="my-8" />
-      <!-- Образование -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6">Образование</h2>
-        <Card>
-          <CardHeader>
-            <CardTitle class="text-xl font-semibold"
-              >Воронежский Государственный Архитектурно-Строительный Университет</CardTitle
-            >
-            <p class="text-muted-foreground text-base">
-              Специальность: «Теплогазоснабжение и вентиляция»
-            </p>
-            <p class="text-sm text-muted-foreground">Диплом с отличием — 2005 г.</p>
-          </CardHeader>
+
+      <!-- Контактная информация -->
+      <!-- Компактный вариант с круглыми кнопками -->
+      <section class="mb-16 text-center">
+        <Card class="card-hover p-8 max-w-2xl mx-auto">
+          <h2 class="text-2xl font-bold mb-4">Свяжитесь со мной</h2>
+          <p class="text-muted-foreground mb-8">Выберите удобный способ обсудить ваш проект</p>
+
+          <div class="flex justify-center gap-6">
+            <!-- Email -->
+            <div class="text-center">
+              <Button
+                variant="outline"
+                size="icon"
+                as-child
+                class="h-14 w-14 rounded-full mb-2 hover:bg-primary/10"
+              >
+                <a href="mailto:razinkovnik@gmail.com" title="Написать на email">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    />
+                  </svg>
+                </a>
+              </Button>
+              <div class="text-xs font-medium">Email</div>
+            </div>
+
+            <!-- Telegram -->
+            <div class="text-center">
+              <Button
+                variant="outline"
+                size="icon"
+                as-child
+                class="h-14 w-14 rounded-full mb-2 hover:bg-blue-50 dark:hover:bg-blue-950"
+              >
+                <a
+                  href="https://t.me/your_telegram_username"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Написать в Telegram"
+                >
+                  <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.78 5.42-.9 6.8-.06.67-.36.89-.89.56-2.45-1.83-3.57-2.98-5.79-4.78-.51-.35-.87-.53-.85-1.04.03-.53.57-.76 1.02-.59 2.93 1.18 4.7 2.07 7.59 3.22.38.16.67.24.76.38.17.28.02.67-.36.67-5.49-.05-7.8-1.14-10.26-2.24-.83-.31-1.48-.52-1.42-1.1.03-.31.23-.61.67-.88 2.49-1.24 7.28-3.15 9.58-3.88.96-.27 1.73.14 1.56 1.1z"
+                    />
+                  </svg>
+                </a>
+              </Button>
+              <div class="text-xs font-medium">Telegram</div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="text-center">
+              <Button
+                variant="outline"
+                size="icon"
+                as-child
+                class="h-14 w-14 rounded-full mb-2 hover:bg-green-50 dark:hover:bg-green-950"
+              >
+                <a
+                  href="https://wa.me/79999999999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Написать в WhatsApp"
+                >
+                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12.017 2.047C6.207 2.047 1.451 6.804 1.451 12.614c0 1.846.48 3.582 1.32 5.082L2 22l4.396-.771c1.454.78 3.102 1.227 4.621 1.227 5.811 0 10.567-4.757 10.567-10.567S17.828 2.047 12.017 2.047zm-5.64 12.71c-.297-.15-1.758-.867-2.006-1.5-.248-.632.248-1.17.521-1.33.273-.16.67-.297.87-.297.198 0 .322.023.458.115.136.093.595.52.72.52.126 0 .211-.062.346-.186.136-.124.57-.52.744-.52.174 0 .297.03.446.15.15.124.645.57.77.868.124.298.124 1.553-.347 2.133-.47.58-.868.645-1.115.708-.248.062-.52.03-.793-.15zm8.32.15c-.273.17-.396.14-.77-.03-.372-.17-1.508-.52-1.817-.58-.31-.06-.52-.03-.744.184-.223.215-.868.828-.868 1.008 0 .18.136.214.297.322.16.108.694.496 1.508.868.814.372.814.248 1.047.233.233-.015.77-.297.92-.57.15-.273.15-.508.108-.57-.044-.062-.167-.108-.354-.245z"
+                    />
+                  </svg>
+                </a>
+              </Button>
+              <div class="text-xs font-medium">WhatsApp</div>
+            </div>
+          </div>
+
+          <p class="text-sm text-muted-foreground mt-6">
+            Отвечаю в течение 1-2 часов в рабочее время
+          </p>
         </Card>
       </section>
-      <Separator class="my-8" />
-      <!-- Дополнительно -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6">Дополнительно</h2>
-        <ul class="list-disc pl-5 space-y-1 text-muted-foreground text-base">
-          <li>Гражданство: РФ</li>
-          <li>Готов к командировкам</li>
-          <li>Английский язык: технический (чтение документации)</li>
-          <li>Формат работы: гибридный или удалённый</li>
-        </ul>
-      </section>
-      <!-- Подвал -->
-      <footer class="mt-16 text-center text-sm text-muted-foreground">
-        <p>© 2025 Разиньков Никита Николаевич. Все права защищены.</p>
-        <div class="mt-2 flex justify-center gap-4">
-          <Button variant="ghost" size="sm" @click="toggleDark">
+    </div>
+
+    <!-- Подвал -->
+    <footer class="border-t bg-card/50 py-8 mt-12">
+      <div class="container mx-auto max-w-4xl px-4 text-center">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <div class="w-2 h-2 bg-primary rounded-full"></div>
+          <p class="text-muted-foreground font-medium">Разиньков Никита Николаевич</p>
+          <div class="w-2 h-2 bg-primary rounded-full"></div>
+        </div>
+        <p class="text-sm text-muted-foreground mb-2">Инженер-проектировщик с 20+ летним опытом</p>
+        <p class="text-xs text-muted-foreground mb-4">Обновлено: {{ currentYear }}</p>
+        <div class="flex justify-center gap-4">
+          <Button variant="ghost" size="sm" @click="toggleDark" class="flex items-center gap-2">
+            <span>{{ isDark ? '☀️' : '🌙' }}</span>
             {{ isDark ? 'Светлая тема' : 'Тёмная тема' }}
           </Button>
-          <Button variant="outline" size="sm" as-child>
-            <a :href="`mailto:razinkovnik@gmail.com`">Написать</a>
-          </Button>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
+
     <!-- Модальное окно -->
     <ProjectModal
       v-if="selectedProject"
@@ -230,29 +325,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import {
   Avatar,
   AvatarImage,
   AvatarFallback,
   Badge,
   Card,
-  CardHeader,
   CardTitle,
-  CardContent,
-  Separator,
   Button,
 } from '@/components/ui'
 import ProjectModal from '@/components/ui/ProjectModal.vue'
 import type { Project, ProjectGroup } from '@/types'
 import HeadMeta from '@/components/seo/HeadMeta.vue'
 
-// Импорт данных из JSON
+// Импорт данных
 import projects from '@/data/projects.json'
 import projectGroupsData from '@/data/projectGroups.json'
-import skills from '@/data/skills.json'
 
-// Типизированные данные
 const projectGroups = projectGroupsData as ProjectGroup[]
 
 // Реактивные переменные
@@ -261,6 +351,38 @@ const selectedProject = ref<Project | null>(null)
 const openGroups = ref<Record<number, boolean>>({})
 const showAll = ref<Record<number, boolean>>({})
 
+const currentYear = new Date().getFullYear().toString()
+
+// Улучшенные данные для опыта
+const experienceItems = [
+  'Разработка проектной и рабочей документации для систем газоснабжения',
+  'Проектирование объектов обустройства нефтяных месторождений',
+  'Подготовка и сопровождение проектов в государственной экспертизе',
+  'Автоматизация черчения и документооборота с использованием Python',
+  'Руководство проектной группой (5–10 инженеров)',
+  'Координация междисциплинарных работ в гибридном формате',
+]
+
+// Улучшенные навыки с уровнями
+const designSkills = [
+  'AutoCAD Plant 3D',
+  'Газоснабжение',
+  'Нефтепроводы',
+  '3D-моделирование',
+  'Разработка ПД/РД',
+  'Госэкспертиза',
+]
+
+const techSkills = [
+  'Python',
+  'AutoCAD API',
+  'MS Office',
+  'Руководство командой',
+  'Проектная документация',
+  'Ведение проектов',
+]
+
+// Существующие методы остаются без изменений
 function toggleShowAll(index: number) {
   showAll.value[index] = !showAll.value[index]
 }
@@ -268,6 +390,11 @@ function toggleShowAll(index: number) {
 function visibleExamples(group: ProjectGroup, index: number): string[] {
   const limit = 4
   return showAll.value[index] ? group.examples : group.examples.slice(0, limit)
+}
+
+// Метод для безопасного получения регионов
+function getRegions(group: ProjectGroup): string[] {
+  return (group as any).regions || ['Различные регионы России']
 }
 
 function findProjectByName(name: string): Project | undefined {
@@ -278,7 +405,6 @@ function toggleGroup(index: number) {
   openGroups.value[index] = !openGroups.value[index]
 }
 
-// Тема
 function setTheme(dark: boolean) {
   if (dark) {
     document.documentElement.classList.add('dark')
@@ -297,20 +423,7 @@ function openProjectModal(project: Project | undefined) {
   if (project) selectedProject.value = project
 }
 
-// Динамический title
-const pageTitle = ref('Разиньков Никита - Инженер-проектировщик нефтегазовых объектов')
-
 onMounted(() => {
-  document.title = pageTitle.value
-
-  // Обновляем meta description динамически
-  const metaDescription = document.querySelector('meta[name="description"]')
-  if (metaDescription) {
-    metaDescription.setAttribute(
-      'content',
-      'Инженер-проектировщик с 20+ летним опытом. Специализация: AutoCAD Plant 3D, Python, проектирование нефтегазовых объектов.',
-    )
-  }
   // Инициализация темы
   const saved = localStorage.theme
   if (saved === 'dark' || saved === 'light') {

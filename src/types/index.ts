@@ -14,6 +14,7 @@ export interface Project {
 
 export interface ProjectGroup {
   title: string
+  regions: string[] // Добавьте это свойство
   summary: string
   features: string[]
   examples: string[]
@@ -21,5 +22,10 @@ export interface ProjectGroup {
 
 export interface SkillCategory {
   category: string
-  skills: string[]
+  skills: SkillItem[]
+}
+
+export interface SkillItem {
+  name: string
+  level: number
 }
