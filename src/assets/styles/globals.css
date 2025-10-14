@@ -1,357 +1,118 @@
-/* src/assets/styles/globals.css */
-@import 'tailwindcss';
+@import "tailwindcss";
 
-/* Определяем переменные для светлой темы */
+/* ---------- 1. Переменные ---------- */
 :root {
-  --font-size: 14px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: #ffffff;
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: #ffffff;
-  --secondary: oklch(0.97 0.005 264.531);
-  --secondary-foreground: #030213;
-  --muted: #f5f5f5;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #030213;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --primary: #0d0c22;          /* «чёрный с синим» */
+  --accent: #6366f1;           /* индиго */
+  --pop: #f43f5e;              /* ярко-розовый */
+  --muted: #f3f4f6;
+  --muted-fore: #6b7280;
   --border: #e5e7eb;
-  --input: #ffffff;
-  --input-background: #ffffff;
-  --ring: oklch(0.708 0 0);
-  --radius: 0.625rem;
+  --radius: 1rem;
+  font-family: "Inter", system-ui, sans-serif;
 }
-
-/* Переопределяем переменные для тёмной темы */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --bg: #0d0c22;
+  --surface: #1a192f;
+  --primary: #fafafa;
+  --accent: #818cf8;
+  --pop: #ff5d7a;
+  --muted: #1f1d35;
+  --border: #272550;
 }
 
-/* Базовые стили */
-* {
-  border-color: var(--border);
-}
-
+/* ---------- 2. База ---------- */
+* { border-color: var(--border); }
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-size: var(--font-size);
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--bg);
+  color: var(--primary);
+  transition: background .3s, color .3s;
 }
 
-/* Типографика */
-h1 { 
-  font-size: 1.5rem; 
-  font-weight: 600; 
-  line-height: 1.25; 
-  margin-bottom: 0.5rem;
+/* ---------- 3. Типографика ---------- */
+h1 { font-size: 3.052rem; font-weight: 600; line-height: 1.1; }
+h2 { font-size: 2.441rem; }
+h3 { font-size: 1.953rem; }
+
+/* ---------- 4. Glass ---------- */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.35);
+}
+.dark .glass { background: rgba(26,25,47,.55); }
+
+/* ---------- 5. Aurora Hero ---------- */
+.aurora {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, var(--pop) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 70%, var(--accent) 0%, transparent 40%);
+  opacity: .25;
+  animation: aurora 20s linear infinite;
+}
+@keyframes aurora {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 
-h2 { 
-  font-size: 1.375rem; 
-  font-weight: 600; 
-  line-height: 1.3; 
-  margin-bottom: 0.75rem;
+/* ---------- 6. Badge shine ---------- */
+.badge-live { position: relative; overflow: hidden; }
+.badge-live::after {
+  content: "";
+  position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, #fff5, transparent);
+  animation: shine 2.5s infinite;
+}
+@keyframes shine { to { left: 100%; } }
+
+/* ---------- 7. Skill bar ---------- */
+.skill-bar { height: 4px; background: var(--muted); border-radius: 2px; }
+.skill-bar > div { height: 100%; background: var(--accent); border-radius: 2px; }
+.skill-item:hover .skill-bar > div { background: var(--pop); }
+
+/* ---------- 8. Accordion slide ---------- */
+.accordion-body {
+  display: grid; grid-template-rows: 0fr; transition: .35s ease;
+}
+.accordion-body.open { grid-template-rows: 1fr; }
+.accordion-body > div { overflow: hidden; }
+
+/* ---------- 9. Icon button ---------- */
+.btn-icon {
+  display: inline-flex; gap: .5rem; align-items: center;
+  padding: .75rem 1.25rem; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--muted);
+  transition: .25s;
+}
+.btn-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,.15);
+  border-color: var(--accent);
 }
 
-h3 { 
-  font-size: 1.25rem; 
-  font-weight: 600; 
-  line-height: 1.4; 
-  margin-bottom: 0.5rem;
-}
+/* ---------- 10. Fade-up ---------- */
+.fade-up { opacity: 0; transform: translateY(30px); transition: .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-h4 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
+/* ---------- 11. Avatar 3D ---------- */
+.avatar-3d { perspective: 1000px; }
+.avatar-3d img {
+  transform: rotateY(-15deg) rotateX(5deg);
+  transition: .4s;
 }
+.avatar-3d:hover img { transform: rotateY(0) rotateX(0) scale(1.05); }
 
-p {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
+/* ---------- 12. Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-button {
-  font-weight: 500;
-}
-
-/* Стили для Card компонента */
-.rounded-lg {
-  border-radius: var(--radius);
-}
-
-.border {
-  border: 1px solid var(--border);
-}
-
-.bg-card {
-  background-color: var(--card);
-}
-
-.text-card-foreground {
-  color: var(--card-foreground);
-}
-
-/* Стили для текстовых цветов */
-.text-foreground {
-  color: var(--foreground);
-}
-
-.text-muted-foreground {
-  color: var(--muted-foreground);
-}
-
-/* Стили для Badge */
-.inline-flex {
-  display: inline-flex;
-}
-
-.rounded-full {
-  border-radius: 9999px;
-}
-
-.border-border {
-  border-color: var(--border);
-}
-
-.bg-muted {
-  background-color: var(--muted);
-}
-
-/* Мобильная оптимизация */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  h1 { font-size: 1.375rem; }
-  h2 { font-size: 1.25rem; }
-  h3 { font-size: 1.125rem; }
-  h4 { font-size: 1rem; }
-}
-
-/* Улучшения доступности */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Плавные переходы для темы */
-* {
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-/* Фокус для клавиатурной навигации */
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
-
-/* Стили для модального окна */
-.fixed {
-  position: fixed;
-}
-
-.inset-0 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
-.bg-black {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bg-opacity-50 {
-  --tw-bg-opacity: 0.5;
-}
-
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.p-4 {
-  padding: 1rem;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
-}
-
-.w-full {
+.btn-icon {
+  min-width: 112px;   /* 112 px ≈ 7 rem – хватает для «WhatsApp» */
   width: 100%;
-}
-
-.max-h-\[90vh\] {
-  max-height: 90vh;
-}
-
-.overflow-y-auto {
-  overflow-y: auto;
-}
-
-/* Современные градиенты и тени */
-.gradient-bg {
-  background: linear-gradient(135deg, var(--primary) 0%, oklch(0.3 0.1 250) 100%);
-}
-
-.card-hover {
-  transition: all 0.3s ease;
-  border: 1px solid var(--border);
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary);
-}
-
-/* Анимированные элементы */
-.skill-item {
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.skill-item:hover::before {
-  left: 100%;
-}
-
-/* Современные кнопки */
-.btn-modern {
-  background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
-  border: none;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-modern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-modern:hover::before {
-  left: 100%;
-}
-
-.btn-modern:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
-}
-
-/* Анимация появления */
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stagger-animation > * {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-
-/* Индикатор прогресса для навыков */
-.skill-level {
-  height: 4px;
-  background: var(--muted);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-
-.skill-level-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), #4f46e5);
-  border-radius: 2px;
-  transition: width 1s ease-in-out;
+  max-width: 128px;   /* необязательно, но выглядит аккуратно */
 }
