@@ -10,9 +10,9 @@
         <div class="mb-4">
           <h4 class="font-medium mb-2">Технологии:</h4>
           <div class="flex flex-wrap gap-2">
-            <Badge 
-              variant="outline" 
-              v-for="(tech, i) in project.technologies" 
+            <Badge
+              variant="outline"
+              v-for="(tech, i) in project.technologies"
               :key="i"
             >
               {{ tech }}
@@ -22,12 +22,12 @@
         <div class="mb-4" v-if="project.links && project.links.length">
           <h4 class="font-medium mb-2">Ссылки:</h4>
           <div class="space-y-2">
-            <a 
-              v-for="(link, i) in project.links" 
-              :key="i" 
-              :href="link.url" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              v-for="(link, i) in project.links"
+              :key="i"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="block"
             >
               <Button variant="outline" size="sm" class="w-full justify-start">
@@ -73,7 +73,7 @@ interface Props {
   project: Project
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const emit = defineEmits<{
   (e: 'close'): void

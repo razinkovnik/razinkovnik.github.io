@@ -196,8 +196,13 @@
           <Card class="p-6">
             <h3 class="text-lg font-semibold text-primary mb-4 border-b pb-2">Проектирование</h3>
             <div class="flex flex-wrap gap-2">
-              <Badge v-for="skill in designSkills" :key="skill" variant="secondary" class="text-sm">
-                {{ skill }}
+              <Badge
+                v-for="skill in designSkills"
+                :key="skill.name"
+                variant="secondary"
+                class="text-sm"
+              >
+                {{ skill.name }}
               </Badge>
             </div>
           </Card>
@@ -205,8 +210,13 @@
           <Card class="p-6">
             <h3 class="text-lg font-semibold text-primary mb-4 border-b pb-2">Технологии</h3>
             <div class="flex flex-wrap gap-2">
-              <Badge v-for="skill in techSkills" :key="skill" variant="secondary" class="text-sm">
-                {{ skill }}
+              <Badge
+                v-for="skill in techSkills"
+                :key="skill.name"
+                variant="secondary"
+                class="text-sm"
+              >
+                {{ skill.name }}
               </Badge>
             </div>
           </Card>
@@ -335,11 +345,12 @@ import {
   CardTitle,
   Button,
 } from '@/components/ui'
-import ProjectModal from '@/components/ui/ProjectModal.vue'
-import type { Project, ProjectGroup } from '@/types'
+import ProjectModal from '@/components/ui/UIProjectModal.vue'
+import type { Project, ProjectGroup, SkillItem } from '@/types'
 import HeadMeta from '@/components/seo/HeadMeta.vue'
 
 // Импорт данных
+import skills from '@/data/skills.json'
 import projects from '@/data/projects.json'
 import projectGroupsData from '@/data/projectGroups.json'
 
@@ -362,25 +373,23 @@ const experienceItems = [
   'Руководство проектной группой (5–10 инженеров)',
   'Координация междисциплинарных работ в гибридном формате',
 ]
-
 // Улучшенные навыки с уровнями
-const designSkills = [
-  'AutoCAD Plant 3D',
-  'Газоснабжение',
-  'Нефтепроводы',
-  '3D-моделирование',
-  'Разработка ПД/РД',
-  'Госэкспертиза',
-]
-
-const techSkills = [
-  'Python',
-  'AutoCAD API',
-  'MS Office',
-  'Руководство командой',
-  'Проектная документация',
-  'Ведение проектов',
-]
+const allSkills = skills as SkillItem[]
+const designSkills = allSkills.filter((s) =>
+  [
+    'Газоснабжение',
+    'Нефтепроводы',
+    'AutoCAD Plant 3D',
+    '3D-моделирование',
+    'Разработка ПД/РД',
+    'Госэкспертиза',
+  ].includes(s.name),
+)
+const techSkills = allSkills.filter((s) =>
+  ['Python', 'AutoCAD API', 'MS Office', 'Руководство командой', 'Ведение проектов'].includes(
+    s.name,
+  ),
+)
 
 // Существующие методы остаются без изменений
 function toggleShowAll(index: number) {
@@ -392,9 +401,8 @@ function visibleExamples(group: ProjectGroup, index: number): string[] {
   return showAll.value[index] ? group.examples : group.examples.slice(0, limit)
 }
 
-// Метод для безопасного получения регионов
 function getRegions(group: ProjectGroup): string[] {
-  return (group as any).regions || ['Различные регионы России']
+  return group.regions
 }
 
 function findProjectByName(name: string): Project | undefined {

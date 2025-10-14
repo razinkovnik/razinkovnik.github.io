@@ -7,5 +7,5 @@
 </template>
 
 <script setup lang="ts">
-import ToastViewport from './ToastViewport.vue'
+import ToastViewport from './UIToastViewport.vue'
 </script>

@@ -1,12 +1,12 @@
 [
-  "Газоснабжение",
-  "Нефтепроводы",
-  "AutoCAD Plant 3D",
-  "AutoCAD API",
-  "Python",
-  "Разработка ПД/РД",
-  "Госэкспертиза",
-  "Руководство командой",
-  "3D-моделирование",
-  "MS Office"
+  { "name": "Газоснабжение", "level": 5 },
+  { "name": "Нефтепроводы", "level": 5 },
+  { "name": "AutoCAD Plant 3D", "level": 5 },
+  { "name": "AutoCAD API", "level": 4 },
+  { "name": "Python", "level": 4 },
+  { "name": "Разработка ПД/РД", "level": 5 },
+  { "name": "Госэкспертиза", "level": 5 },
+  { "name": "Руководство командой", "level": 4 },
+  { "name": "3D-моделирование", "level": 5 },
+  { "name": "MS Office", "level": 5 }
 ]

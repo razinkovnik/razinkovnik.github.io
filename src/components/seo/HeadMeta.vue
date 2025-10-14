@@ -1,5 +1,6 @@
 <!-- src/components/seo/HeadMeta.vue -->
 <template>
+  <div></div>
   <!-- Этот компонент не рендерит DOM, только управляет head -->
 </template>
 
@@ -35,7 +36,7 @@ watch(props, () => {
 function updateMetaTags() {
   // Title
   document.title = props.title
-  
+
   // Meta description
   let metaDesc = document.querySelector('meta[name="description"]')
   if (!metaDesc) {
@@ -44,7 +45,7 @@ function updateMetaTags() {
     document.head.appendChild(metaDesc)
   }
   metaDesc.setAttribute('content', props.description)
-  
+
   // Keywords
   let metaKeywords = document.querySelector('meta[name="keywords"]')
   if (!metaKeywords) {
@@ -53,7 +54,7 @@ function updateMetaTags() {
     document.head.appendChild(metaKeywords)
   }
   metaKeywords.setAttribute('content', props.keywords)
-  
+
   // Canonical
   let linkCanonical = document.querySelector('link[rel="canonical"]')
   if (!linkCanonical) {
