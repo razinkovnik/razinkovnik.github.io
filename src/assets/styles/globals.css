@@ -13,6 +13,7 @@
   --radius: 1rem;
   font-family: "Inter", system-ui, sans-serif;
 }
+
 .dark {
   --bg: #0d0c22;
   --surface: #1a192f;
@@ -20,47 +21,91 @@
   --accent: #818cf8;
   --pop: #ff5d7a;
   --muted: #1f1d35;
+  --muted-fore: #9ca3af;
   --border: #272550;
 }
 
 /* ---------- 2. База ---------- */
-* { border-color: var(--border); }
+* {
+  border-color: var(--border);
+}
+
 body {
   background: var(--bg);
   color: var(--primary);
   transition: background .3s, color .3s;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-/* ---------- 3. Типографика ---------- */
+/* ---------- 3. Gradient Background для Hero ---------- */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--pop) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(99, 102, 241, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 70%, rgba(244, 63, 94, 0.3) 0%, transparent 40%);
+  animation: aurora 20s linear infinite;
+}
+
+/* ---------- 4. Card Hover Effects ---------- */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+
+/* ---------- 5. Button Modern ---------- */
+.btn-modern {
+  transition: all 0.3s ease;
+}
+
+.btn-modern:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* ---------- 6. Aurora Animation ---------- */
+@keyframes aurora {
+  0%   { transform: rotate(0deg) scale(1); opacity: 0.3; }
+  50%  { transform: rotate(180deg) scale(1.2); opacity: 0.5; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.3; }
+}
+
+/* ---------- 7. Typography ---------- */
 h1 { font-size: 3.052rem; font-weight: 600; line-height: 1.1; }
 h2 { font-size: 2.441rem; }
 h3 { font-size: 1.953rem; }
 
-/* ---------- 4. Glass ---------- */
+/* ---------- 8. Glass Effect ---------- */
 .glass {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: rgba(255,255,255,.55);
   border: 1px solid rgba(255,255,255,.35);
 }
-.dark .glass { background: rgba(26,25,47,.55); }
-
-/* ---------- 5. Aurora Hero ---------- */
-.aurora {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 70% 30%, var(--pop) 0%, transparent 40%),
-    radial-gradient(ellipse at 30% 70%, var(--accent) 0%, transparent 40%);
-  opacity: .25;
-  animation: aurora 20s linear infinite;
-}
-@keyframes aurora {
-  0%   { transform: rotate(0deg) scale(1); }
-  50%  { transform: rotate(180deg) scale(1.2); }
-  100% { transform: rotate(360deg) scale(1); }
+.dark .glass {
+  background: rgba(26,25,47,.55);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
-/* ---------- 6. Badge shine ---------- */
+/* ---------- 9. Badge shine ---------- */
 .badge-live { position: relative; overflow: hidden; }
 .badge-live::after {
   content: "";
@@ -70,49 +115,51 @@ h3 { font-size: 1.953rem; }
 }
 @keyframes shine { to { left: 100%; } }
 
-/* ---------- 7. Skill bar ---------- */
+/* ---------- 10. Skill bar ---------- */
 .skill-bar { height: 4px; background: var(--muted); border-radius: 2px; }
 .skill-bar > div { height: 100%; background: var(--accent); border-radius: 2px; }
 .skill-item:hover .skill-bar > div { background: var(--pop); }
 
-/* ---------- 8. Accordion slide ---------- */
-.accordion-body {
-  display: grid; grid-template-rows: 0fr; transition: .35s ease;
+/* ---------- 11. Fade-up Animation ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: .6s ease;
 }
-.accordion-body.open { grid-template-rows: 1fr; }
-.accordion-body > div { overflow: hidden; }
-
-/* ---------- 9. Icon button ---------- */
-.btn-icon {
-  display: inline-flex; gap: .5rem; align-items: center;
-  padding: .75rem 1.25rem; border-radius: var(--radius);
-  background: var(--surface); border: 1px solid var(--muted);
-  transition: .25s;
-}
-.btn-icon:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px -5px rgba(0,0,0,.15);
-  border-color: var(--accent);
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ---------- 10. Fade-up ---------- */
-.fade-up { opacity: 0; transform: translateY(30px); transition: .6s ease; }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-/* ---------- 11. Avatar 3D ---------- */
-.avatar-3d { perspective: 1000px; }
-.avatar-3d img {
-  transform: rotateY(-15deg) rotateX(5deg);
-  transition: .4s;
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }
-.avatar-3d:hover img { transform: rotateY(0) rotateX(0) scale(1.05); }
 
 /* ---------- 12. Scrollbar ---------- */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-.btn-icon {
-  min-width: 112px;   /* 112 px ≈ 7 rem – хватает для «WhatsApp» */
-  width: 100%;
-  max-width: 128px;   /* необязательно, но выглядит аккуратно */
+/* ---------- 13. Utility Classes ---------- */
+.text-muted-foreground {
+  color: var(--muted-fore);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+.bg-accent {
+  background: var(--accent);
+}
+
+.bg-accent\/10 {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.bg-accent\/30 {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.bg-primary\/10 {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
 }

@@ -1,81 +1,75 @@
-<!-- src/components/ui/ProjectModal.vue -->
+<!-- src/components/ui/UIProjectModal.vue -->
 <template>
-  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-    <Card class="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-      <CardHeader>
-        <CardTitle class="text-2xl">{{ project.name }}</CardTitle>
-        <p class="text-muted-foreground">{{ project.fullDescription }}</p>
-      </CardHeader>
-      <CardContent>
-        <div class="mb-4">
-          <h4 class="font-medium mb-2">Технологии:</h4>
-          <div class="flex flex-wrap gap-2">
-            <Badge
-              variant="outline"
-              v-for="(tech, i) in project.technologies"
-              :key="i"
-            >
-              {{ tech }}
-            </Badge>
+  <Teleport to="body">
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      @click="$emit('close')"
+    >
+      <div
+        class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface text-primary shadow-xl border border-border"
+        @click.stop
+      >
+        <!-- Заголовок -->
+        <div class="p-6 border-b border-border">
+          <h2 class="text-2xl font-bold">{{ project.name }}</h2>
+          <p class="text-muted-foreground mt-1">{{ project.description }}</p>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="p-6 space-y-5">
+          <p class="text-foreground leading-relaxed">{{ project.fullDescription }}</p>
+
+          <!-- Технологии -->
+          <div>
+            <h3 class="font-medium mb-2">Используемые технологии и решения:</h3>
+            <div class="flex flex-wrap gap-2">
+              <Badge
+                v-for="(tech, idx) in project.technologies"
+                :key="idx"
+                variant="outline"
+                class="text-xs px-2 py-1"
+              >
+                {{ tech }}
+              </Badge>
+            </div>
+          </div>
+
+          <!-- Ссылки (если есть) -->
+          <div v-if="project.links.length > 0">
+            <h3 class="font-medium mb-2">Ссылки:</h3>
+            <ul class="list-disc pl-5 space-y-1">
+              <li v-for="(link, idx) in project.links" :key="idx">
+                <a
+                  :href="link.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-accent hover:underline"
+                >
+                  {{ link.name }}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="mb-4" v-if="project.links && project.links.length">
-          <h4 class="font-medium mb-2">Ссылки:</h4>
-          <div class="space-y-2">
-            <a
-              v-for="(link, i) in project.links"
-              :key="i"
-              :href="link.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block"
-            >
-              <Button variant="outline" size="sm" class="w-full justify-start">
-                {{ link.name }}
-              </Button>
-            </a>
-          </div>
+
+        <!-- Кнопка закрытия -->
+        <div class="p-6 border-t border-border flex justify-end">
+          <Button variant="outline" @click="$emit('close')">Закрыть</Button>
         </div>
-      </CardContent>
-      <div class="p-6 pt-0">
-        <Button variant="outline" size="sm" @click="emit('close')">
-          Закрыть
-        </Button>
       </div>
-    </Card>
-  </div>
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  Badge,
-  Button
-} from '@/components/ui'
+import { Badge, Button } from '@/components/ui'
+import type { Project } from '@/types'
 
-interface ProjectLink {
-  name: string
-  url: string
-}
-
-interface Project {
-  name: string
-  description: string
-  fullDescription: string
-  technologies: string[]
-  links: ProjectLink[]
-}
-
-interface Props {
+defineProps<{
   project: Project
-}
+}>()
 
-defineProps<Props>()
-
-const emit = defineEmits<{
+defineEmits<{
   (e: 'close'): void
 }>()
 </script>

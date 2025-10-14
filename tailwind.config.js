@@ -5,25 +5,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        card: 'var(--card)',
-        'card-foreground': 'var(--card-foreground)',
-        popover: 'var(--popover)',
-        'popover-foreground': 'var(--popover-foreground)',
+        // Основные цвета из CSS переменных
+        background: 'var(--bg)',
+        foreground: 'var(--primary)',
+        surface: 'var(--surface)',
         primary: 'var(--primary)',
-        'primary-foreground': 'var(--primary-foreground)',
-        secondary: 'var(--secondary)',
-        'secondary-foreground': 'var(--secondary-foreground)',
-        muted: 'var(--muted)',
-        'muted-foreground': 'var(--muted-foreground)',
         accent: 'var(--accent)',
-        'accent-foreground': 'var(--accent-foreground)',
-        destructive: 'var(--destructive)',
-        'destructive-foreground': 'var(--destructive-foreground)',
+        pop: 'var(--pop)',
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-fore)',
+        },
         border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
+
+        // Дополнительные цвета для совместимости
+        card: 'var(--surface)',
+        'card-foreground': 'var(--primary)',
+        popover: 'var(--surface)',
+        'popover-foreground': 'var(--primary)',
+        'primary-foreground': '#ffffff',
+        secondary: 'var(--muted)',
+        'secondary-foreground': 'var(--primary)',
+        'accent-foreground': 'var(--primary)',
+        destructive: 'var(--pop)',
+        'destructive-foreground': '#ffffff',
+        input: 'var(--border)',
+        ring: 'var(--accent)',
       },
       borderRadius: {
         lg: 'var(--radius)',

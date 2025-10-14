@@ -1,0 +1,5 @@
+export { default as Contact } from './SectionContact.vue'
+export { default as Experience } from './SectionExperience.vue'
+export { default as Portfolio } from './SectionPortfolio.vue'
+export { default as Skills } from './SectionSkills.vue'
+export { default as Footer } from './SectionFooter.vue'

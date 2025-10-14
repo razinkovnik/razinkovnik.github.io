@@ -30,10 +30,10 @@
 
           <!-- бейджи -->
           <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-            <Badge shiny>🎯 20+ лет опыта</Badge>
-            <Badge shiny>📐 AutoCAD Plant 3D</Badge>
-            <Badge shiny>🐍 Python</Badge>
-            <Badge shiny>👨‍💼 Руководство проектами</Badge>
+            <Badge class="text-white bg-accent/30 border-accent/50" shiny>🎯 20+ лет опыта</Badge>
+            <Badge class="text-white bg-accent/30 border-accent/50" shiny>📐 AutoCAD Plant 3D</Badge>
+            <Badge class="text-white bg-accent/30 border-accent/50" shiny>🐍 Python</Badge>
+            <Badge class="text-white bg-accent/30 border-accent/50" shiny>👨‍💼 Руководство проектами</Badge>
           </div>
         </div>
       </div>

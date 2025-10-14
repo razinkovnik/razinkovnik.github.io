@@ -43,7 +43,7 @@
 import { ref } from 'vue'
 import { Card } from '@/components/ui'
 import { useFadeUp } from '@/composables/useFadeUp'
-import { Mail, Send, Phone } from './Icons'
+import { Mail, Send, Phone } from '../ui/Icons'
 
 const root = ref<HTMLElement | null>(null)
 useFadeUp(root)
