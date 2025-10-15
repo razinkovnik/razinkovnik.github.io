@@ -37,20 +37,20 @@
           </div>
         </div>
 
-        <!-- 🔻 Чертежи (новая секция) -->
+        <!-- Чертежи -->
         <div v-if="project.drawings && project.drawings.length > 0">
           <h3 class="font-medium text-lg mb-3">Примеры чертежей</h3>
           <div class="flex flex-wrap gap-2">
             <a
-              v-for="(pdf, idx) in project.drawings"
+              v-for="(drawing, idx) in project.drawings"
               :key="idx"
-              :href="pdf"
+              :href="drawing.url"
               target="_blank"
               download
               class="inline-flex items-center gap-1.5 px-3 py-2 bg-accent/10 text-accent rounded-lg hover:bg-accent/20 transition-colors text-sm font-medium"
             >
               <FileTextIcon class="w-4 h-4" />
-              Скачать ({{ idx + 1 }})
+              {{ drawing.label }}
             </a>
           </div>
         </div>
@@ -60,11 +60,9 @@
           <h3 class="font-medium text-lg mb-2">Ссылки</h3>
           <ul class="space-y-1">
             <li v-for="(link, idx) in project.links" :key="idx">
-              <a
-                :href="link.url"
-                target="_blank"
-                class="text-accent hover:underline"
-              >{{ link.name }}</a>
+              <a :href="link.url" target="_blank" class="text-accent hover:underline">{{
+                link.name
+              }}</a>
             </li>
           </ul>
         </div>

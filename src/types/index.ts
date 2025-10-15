@@ -4,13 +4,18 @@ export interface ProjectLink {
   url: string
 }
 
+export interface ProjectDrawing {
+  label: string
+  url: string
+}
+
 export interface Project {
   name: string
   description: string
   fullDescription: string
   technologies: string[]
   links: ProjectLink[]
-  drawings?: string[]
+  drawings?: ProjectDrawing[] // ← обновлено
 }
 
 export interface ProjectGroup {

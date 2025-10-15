@@ -10,43 +10,30 @@
       <Badge v-for="tech in project.technologies.slice(0, 3)" :key="tech" variant="outline">
         {{ tech }}
       </Badge>
-      <Badge v-if="project.technologies.length > 3" variant="outline">+{{ project.technologies.length - 3 }}</Badge>
+      <Badge v-if="project.technologies.length > 3" variant="outline"
+        >+{{ project.technologies.length - 3 }}</Badge
+      >
     </div>
 
     <!-- Кнопки действий -->
     <div class="mt-auto flex flex-wrap gap-2">
-      <Button
-        size="sm"
-        variant="outline"
-        @click="$emit('select')"
-        class="flex-1"
-      >
+      <Button size="sm" variant="outline" @click="$emit('select')" class="flex-1">
         Подробнее
       </Button>
 
       <!-- Скачать чертежи -->
       <div v-if="project.drawings && project.drawings.length > 0" class="flex gap-1 mt-2">
+        <!-- Вместо "PDF" показываем понятную подпись -->
         <a
-          v-for="(pdf, idx) in visibleDrawings"
+          v-for="(drawing, idx) in visibleDrawings"
           :key="idx"
-          :href="pdf"
+          :href="drawing.url"
           target="_blank"
           download
-          class="inline-flex items-center justify-center text-sm px-2 py-1 bg-accent/10 text-accent rounded hover:bg-accent/20 transition-colors"
-          :title="`Скачать чертёж ${idx + 1}`"
+          class="inline-flex items-center justify-center text-sm px-2.5 py-1.5 bg-accent/10 text-accent rounded hover:bg-accent/20 transition-colors"
         >
-          <FileTextIcon class="w-3 h-3 mr-1" />
-          PDF
-        </a>
-        <a
-          v-if="project.drawings.length > 2"
-          :href="project.drawings[2]"
-          target="_blank"
-          download
-          class="inline-flex items-center justify-center text-sm px-2 py-1 bg-accent/10 text-accent rounded hover:bg-accent/20 transition-colors"
-          title="Ещё чертежи"
-        >
-          +{{ project.drawings.length - 2 }}
+          <FileTextIcon class="w-3 h-3 mr-1.5" />
+          {{ drawing.label }}
         </a>
       </div>
     </div>
@@ -57,7 +44,7 @@
 import { Badge, Button } from '@/components/ui'
 import { FileTextIcon } from 'lucide-vue-next'
 import type { Project } from '@/types'
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = defineProps<{
   project: Project
