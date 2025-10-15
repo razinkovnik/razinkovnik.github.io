@@ -1,9 +1,6 @@
 <template>
   <section class="relative overflow-hidden isolate gradient-bg">
     <!-- анимированный фон -->
-    <div class="absolute top-6 right-6">
-      <UIThemeToggle />
-    </div>
     <div class="aurora" />
 
     <!-- контент -->
@@ -46,7 +43,6 @@
 
 <script setup lang="ts">
 import { Badge } from '@/components/ui'
-import UIThemeToggle from '@/components/ui/UIThemeToggle.vue'
 </script>
 
 <style scoped>

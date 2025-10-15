@@ -7,25 +7,18 @@
   />
 
   <div class="min-h-screen bg-background text-foreground">
-    <!-- Hero Section с градиентом -->
-    <Hero />
-
-    <div class="container mx-auto max-w-4xl py-12 px-4">
-      <!-- Опыт работы -->
-      <Experience />
-
-      <!-- Портфолио -->
-      <Portfolio @project-select="openProjectModal" />
-
-      <!-- Навыки -->
-      <Skills />
-
-      <!-- Контакты -->
-      <Contact />
+    <Header />
+    <div class="pt-20">
+      <!-- отступ сверху, чтобы контент не уходил под хедер -->
+      <Hero />
+      <div class="container mx-auto max-w-4xl py-12 px-4">
+        <Experience id="experience" />
+        <Portfolio id="portfolio" @project-select="openProjectModal" />
+        <Skills id="skills" />
+        <Contact id="contact" />
+      </div>
+      <Footer />
     </div>
-
-    <!-- Подвал -->
-    <Footer />
 
     <!-- Модальное окно -->
     <ProjectModal
@@ -38,7 +31,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Hero, ProjectModal } from '@/components/ui'
+import { Hero, ProjectModal, Header } from '@/components/ui'
 import { Skills, Portfolio, Experience, Footer, Contact } from '@/components/sections'
 import type { Project } from '@/types'
 import HeadMeta from '@/components/seo/HeadMeta.vue'
