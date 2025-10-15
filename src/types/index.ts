@@ -10,6 +10,7 @@ export interface Project {
   fullDescription: string
   technologies: string[]
   links: ProjectLink[]
+  drawings?: string[]
 }
 
 export interface ProjectGroup {

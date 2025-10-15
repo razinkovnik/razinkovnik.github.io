@@ -1,75 +1,111 @@
-<!-- src/components/ui/UIProjectModal.vue -->
 <template>
-  <Teleport to="body">
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      @click="$emit('close')"
+      ref="modalRef"
+      class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-surface rounded-xl border border-border shadow-xl"
     >
-      <div
-        class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface text-primary shadow-xl border border-border"
-        @click.stop
-      >
-        <!-- Заголовок -->
-        <div class="p-6 border-b border-border">
-          <h2 class="text-2xl font-bold">{{ project.name }}</h2>
-          <p class="text-muted-foreground mt-1">{{ project.description }}</p>
+      <!-- Заголовок -->
+      <div class="sticky top-0 z-10 bg-surface/90 backdrop-blur p-5 border-b border-border">
+        <div class="flex justify-between items-start">
+          <h2 class="text-xl font-semibold text-primary">{{ project.name }}</h2>
+          <button
+            @click="close"
+            class="p-1.5 rounded-full hover:bg-muted transition-colors"
+            aria-label="Закрыть"
+          >
+            <XIcon class="w-5 h-5 text-muted-foreground" />
+          </button>
         </div>
+        <p class="text-muted-foreground text-sm mt-1">{{ project.description }}</p>
+      </div>
 
-        <!-- Основной контент -->
-        <div class="p-6 space-y-5">
+      <!-- Основное содержимое -->
+      <div class="p-5 space-y-6">
+        <!-- Полное описание -->
+        <div>
+          <h3 class="font-medium text-lg mb-2">Описание</h3>
           <p class="text-foreground leading-relaxed">{{ project.fullDescription }}</p>
+        </div>
 
-          <!-- Технологии -->
-          <div>
-            <h3 class="font-medium mb-2">Используемые технологии и решения:</h3>
-            <div class="flex flex-wrap gap-2">
-              <Badge
-                v-for="(tech, idx) in project.technologies"
-                :key="idx"
-                variant="outline"
-                class="text-xs px-2 py-1"
-              >
-                {{ tech }}
-              </Badge>
-            </div>
-          </div>
-
-          <!-- Ссылки (если есть) -->
-          <div v-if="project.links.length > 0">
-            <h3 class="font-medium mb-2">Ссылки:</h3>
-            <ul class="list-disc pl-5 space-y-1">
-              <li v-for="(link, idx) in project.links" :key="idx">
-                <a
-                  :href="link.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-accent hover:underline"
-                >
-                  {{ link.name }}
-                </a>
-              </li>
-            </ul>
+        <!-- Технологии -->
+        <div>
+          <h3 class="font-medium text-lg mb-2">Используемые технологии и стандарты</h3>
+          <div class="flex flex-wrap gap-2">
+            <Badge v-for="(tech, idx) in project.technologies" :key="idx" variant="outline">
+              {{ tech }}
+            </Badge>
           </div>
         </div>
 
-        <!-- Кнопка закрытия -->
-        <div class="p-6 border-t border-border flex justify-end">
-          <Button variant="outline" @click="$emit('close')">Закрыть</Button>
+        <!-- 🔻 Чертежи (новая секция) -->
+        <div v-if="project.drawings && project.drawings.length > 0">
+          <h3 class="font-medium text-lg mb-3">Примеры чертежей</h3>
+          <div class="flex flex-wrap gap-2">
+            <a
+              v-for="(pdf, idx) in project.drawings"
+              :key="idx"
+              :href="pdf"
+              target="_blank"
+              download
+              class="inline-flex items-center gap-1.5 px-3 py-2 bg-accent/10 text-accent rounded-lg hover:bg-accent/20 transition-colors text-sm font-medium"
+            >
+              <FileTextIcon class="w-4 h-4" />
+              Скачать ({{ idx + 1 }})
+            </a>
+          </div>
+        </div>
+
+        <!-- Ссылки (если есть) -->
+        <div v-if="project.links && project.links.length > 0">
+          <h3 class="font-medium text-lg mb-2">Ссылки</h3>
+          <ul class="space-y-1">
+            <li v-for="(link, idx) in project.links" :key="idx">
+              <a
+                :href="link.url"
+                target="_blank"
+                class="text-accent hover:underline"
+              >{{ link.name }}</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </Teleport>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { Badge, Button } from '@/components/ui'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { XIcon } from 'lucide-vue-next'
+import { FileTextIcon } from 'lucide-vue-next'
+import { Badge } from '@/components/ui'
 import type { Project } from '@/types'
 
 defineProps<{
   project: Project
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'close'): void
 }>()
+
+const modalRef = ref<HTMLElement | null>(null)
+
+function close() {
+  emit('close')
+}
+
+// Закрытие по Escape
+function handleKeyDown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close()
+}
+
+onMounted(() => {
+  document.body.classList.add('overflow-hidden')
+  window.addEventListener('keydown', handleKeyDown)
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('overflow-hidden')
+  window.removeEventListener('keydown', handleKeyDown)
+})
 </script>

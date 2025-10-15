@@ -8,9 +8,7 @@
 
   <div class="min-h-screen bg-background text-foreground">
     <!-- Hero Section с градиентом -->
-    <section class="gradient-bg text-white">
-      <Hero />
-    </section>
+    <Hero />
 
     <div class="container mx-auto max-w-4xl py-12 px-4">
       <!-- Опыт работы -->

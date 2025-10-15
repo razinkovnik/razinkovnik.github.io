@@ -6,7 +6,7 @@
 
       <div class="flex justify-center gap-6">
         <!-- Email -->
-        <a href="mailto:razinkovnik@gmail.com" class="btn-icon group">
+        <a href="mailto:razinkovnik@gmail.com" class="btn-icon group w-25">
           <Mail class="w-5 h-5 text-accent group-hover:text-pop" />
           <span>Email</span>
         </a>
@@ -16,7 +16,7 @@
           href="https://t.me/your_telegram_username"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-icon group"
+          class="btn-icon group w-25"
         >
           <Send class="w-5 h-5 text-accent group-hover:text-pop" />
           <span>Telegram</span>
@@ -27,7 +27,7 @@
           href="https://wa.me/79999999999"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-icon group"
+          class="btn-icon group w-25"
         >
           <Phone class="w-5 h-5 text-accent group-hover:text-pop" />
           <span>WhatsApp</span>
