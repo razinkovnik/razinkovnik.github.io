@@ -1,4 +1,4 @@
-// Main entry point - может использоваться для SSG или dev режима
+// SSG entry point
 import { createSSRApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
@@ -26,11 +26,5 @@ export function createApp() {
     },
   }
 
-  return { app, router, pinia }
-}
-
-// Для dev режима
-if (typeof document !== 'undefined') {
-  const { app } = createApp()
-  app.mount('#app')
+  return { app, router }
 }

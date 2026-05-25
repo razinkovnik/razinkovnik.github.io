@@ -18,7 +18,7 @@
         <!-- текстовый блок -->
         <div class="text-white text-center md:text-left">
           <h1 class="text-4xl md:text-5xl font-bold mb-2">Разиньков Никита Николаевич</h1>
-          <p class="text-xl text-white/90 mb-4">Инженер-проектировщик нефтегазовых объектов</p>
+          <p class="text-xl text-white/90 mb-4">Специалист по проектированию систем газоснабжения и нефтегазовых объектов</p>
           <p class="text-lg text-white/80 max-w-2xl leading-relaxed mb-6">
             Более 20 лет опыта в проектировании систем газоснабжения, магистральных и
             распределительных трубопроводов, объектов добычи и хранения нефти и газа.
@@ -30,9 +30,8 @@
             <Badge class="text-white bg-accent/30 border-accent/50" shiny
               >📐 AutoCAD Plant 3D</Badge
             >
-            <Badge class="text-white bg-accent/30 border-accent/50" shiny>🐍 Python</Badge>
             <Badge class="text-white bg-accent/30 border-accent/50" shiny
-              >👨‍💼 Руководство проектами</Badge
+              >👨‍💼 Управление проектами</Badge
             >
           </div>
         </div>

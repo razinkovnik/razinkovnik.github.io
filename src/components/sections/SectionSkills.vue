@@ -19,10 +19,9 @@
           >
             <div class="flex justify-between text-sm">
               <span>{{ s.name }}</span>
-              <span class="text-muted-fore">{{ s.level * 20 }}%</span>
             </div>
             <div class="skill-bar mt-1">
-              <div :style="{ width: s.level * 20 + '%' }" />
+              <div style="width: 100%" />
             </div>
           </div>
         </div>
@@ -31,7 +30,7 @@
       <!-- Блок 2 -->
       <Card class="p-6 glass">
         <h3 class="text-lg font-semibold mb-4 border-b border-border pb-2">
-          Технологии
+          Навыки
         </h3>
         <div class="space-y-4">
           <div
@@ -41,10 +40,9 @@
           >
             <div class="flex justify-between text-sm">
               <span>{{ s.name }}</span>
-              <span class="text-muted-fore">{{ s.level * 20 }}%</span>
             </div>
             <div class="skill-bar mt-1">
-              <div :style="{ width: s.level * 20 + '%' }" />
+              <div style="width: 100%" />
             </div>
           </div>
         </div>
@@ -70,7 +68,7 @@ const design = all.filter(s =>
 )
 
 const tech = all.filter(s =>
-  ['Python','AutoCAD API','MS Office','Руководство командой'].includes(s.name)
+  ['Python','AutoCAD API','MS Office','Руководство командой','AI/LLM (промптинг)','AI-агенты','RAG-системы'].includes(s.name)
 )
 </script>
 

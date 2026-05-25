@@ -13,7 +13,7 @@
 
         <!-- Telegram -->
         <a
-          href="https://t.me/your_telegram_username"
+          href="https://t.me/m31k0l2"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-icon group w-25"
@@ -22,15 +22,15 @@
           <span>Telegram</span>
         </a>
 
-        <!-- WhatsApp -->
+        <!-- Max -->
         <a
-          href="https://wa.me/79999999999"
+          href="https://max.ru/u/f9LHodD0cOIeJjdXA-AdkZE5KKF4XMslUotn1EQ21zt_UJ91lvPYnUr2uNo"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-icon group w-25"
         >
-          <Phone class="w-5 h-5 text-accent group-hover:text-pop" />
-          <span>WhatsApp</span>
+          <MaxIcon class="w-5 h-5 text-accent group-hover:text-pop" />
+          <span>Max</span>
         </a>
       </div>
 
@@ -43,7 +43,8 @@
 import { ref } from 'vue'
 import { Card } from '@/components/ui'
 import { useFadeUp } from '@/composables/useFadeUp'
-import { Mail, Send, Phone } from '../ui/Icons'
+import { Mail, Send } from '../ui/Icons'
+import MaxIcon from '../ui/MaxIcon.vue'
 
 const root = ref<HTMLElement | null>(null)
 useFadeUp(root)

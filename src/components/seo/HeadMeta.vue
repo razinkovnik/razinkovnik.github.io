@@ -1,11 +1,6 @@
 <!-- src/components/seo/HeadMeta.vue -->
-<template>
-  <div></div>
-  <!-- Этот компонент не рендерит DOM, только управляет head -->
-</template>
-
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { useHead } from '@unhead/vue'
 
 interface Props {
   title?: string
@@ -16,52 +11,24 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Разиньков Никита - Инженер-проектировщик нефтегазовых объектов',
+  title: 'Разиньков Никита - Специалист по проектированию систем газоснабжения и нефтегазовых объектов',
   description: 'Инженер-проектировщик с 20+ летним опытом в проектировании систем газоснабжения и нефтегазовых объектов',
   keywords: 'инженер-проектировщик, нефтегазовые объекты, газоснабжение, AutoCAD Plant 3D, Python',
   ogImage: '/og-image.jpg',
   canonical: 'https://ваш-сайт.com'
 })
 
-// Обновляем meta-теги при монтировании
-onMounted(() => {
-  updateMetaTags()
+useHead({
+  title: props.title,
+  meta: [
+    { name: 'description', content: props.description },
+    { name: 'keywords', content: props.keywords },
+    { property: 'og:image', content: props.ogImage },
+    { property: 'og:title', content: props.title },
+    { property: 'og:description', content: props.description },
+  ],
+  link: [
+    { rel: 'canonical', href: props.canonical }
+  ]
 })
-
-// Обновляем при изменении пропсов
-watch(props, () => {
-  updateMetaTags()
-})
-
-function updateMetaTags() {
-  // Title
-  document.title = props.title
-
-  // Meta description
-  let metaDesc = document.querySelector('meta[name="description"]')
-  if (!metaDesc) {
-    metaDesc = document.createElement('meta')
-    metaDesc.setAttribute('name', 'description')
-    document.head.appendChild(metaDesc)
-  }
-  metaDesc.setAttribute('content', props.description)
-
-  // Keywords
-  let metaKeywords = document.querySelector('meta[name="keywords"]')
-  if (!metaKeywords) {
-    metaKeywords = document.createElement('meta')
-    metaKeywords.setAttribute('name', 'keywords')
-    document.head.appendChild(metaKeywords)
-  }
-  metaKeywords.setAttribute('content', props.keywords)
-
-  // Canonical
-  let linkCanonical = document.querySelector('link[rel="canonical"]')
-  if (!linkCanonical) {
-    linkCanonical = document.createElement('link')
-    linkCanonical.setAttribute('rel', 'canonical')
-    document.head.appendChild(linkCanonical)
-  }
-  linkCanonical.setAttribute('href', props.canonical)
-}
 </script>

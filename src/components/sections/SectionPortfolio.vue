@@ -13,12 +13,17 @@
           @click="toggleGroup(idx)"
         >
           <div class="flex items-center gap-4">
-            <div class="text-center">
-              <div
-                class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex flex-col items-center justify-center text-white relative"
-              >
-                <span class="font-bold text-lg leading-none">{{ group.examples.length }}</span>
-                <span class="text-xs leading-none mt-1">из многих</span>
+            <div class="w-14 h-14 flex items-center justify-center">
+              <div v-if="group.examples.length > 0" class="text-center">
+                <div
+                  class="bg-gradient-to-br from-primary to-primary/80 rounded-lg flex flex-col items-center justify-center text-white relative"
+                  style="width: 56px; height: 56px"
+                >
+                  <span class="font-bold text-lg leading-none">{{ group.examples.length }}</span>
+                  <span class="text-xs leading-none mt-1">{{
+                    getExampleWord(group.examples.length)
+                  }}</span>
+                </div>
               </div>
             </div>
             <div class="flex-1">
@@ -26,7 +31,7 @@
               <p class="text-sm text-muted-foreground mt-1">
                 Регионы: {{ getRegions(group).join(', ') }}
               </p>
-              <p class="text-xs text-primary mt-1 font-medium">
+              <p v-if="group.examples.length > 0" class="text-xs text-primary mt-1 font-medium">
                 Показаны ключевые проекты из портфолио
               </p>
             </div>
@@ -61,7 +66,7 @@
             </div>
           </div>
 
-          <div class="grid gap-3">
+          <div v-if="group.examples.length > 0" class="grid gap-3">
             <div
               v-for="(example, eIdx) in visibleExamples(group, idx)"
               :key="eIdx"
@@ -138,5 +143,24 @@ function toggleGroup(index: number) {
 function handleProjectClick(projectName: string) {
   const project = findProjectByName(projectName)
   emit('projectSelect', project)
+}
+
+function getExampleWord(n: number): string {
+  const mod10 = n % 10
+  const mod100 = n % 100
+
+  if (mod100 >= 11 && mod100 <= 19) {
+    return 'примеров'
+  }
+
+  if (mod10 === 1) {
+    return 'пример'
+  }
+
+  if (mod10 >= 2 && mod10 <= 4) {
+    return 'примера'
+  }
+
+  return 'примеров'
 }
 </script>

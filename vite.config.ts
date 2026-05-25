@@ -20,7 +20,7 @@ export default defineConfig({
       webp: {
         quality: 80,
       },
-    })
+    }),
   ],
   resolve: {
     alias: {
@@ -37,5 +37,9 @@ export default defineConfig({
   },
   ssr: {
     noExternal: ['vue', '@headlessui/vue']
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 5173
   }
 })

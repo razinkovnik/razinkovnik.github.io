@@ -9,10 +9,9 @@
       >
         <div class="flex justify-between text-sm">
           <span>{{ s.name }}</span>
-          <span class="text-muted-fore">{{ s.level * 20 }}%</span>
         </div>
         <div class="skill-bar mt-1">
-          <div :style="{ width: s.level * 20 + '%' }" />
+          <div style="width: 100%" />
         </div>
       </div>
     </div>
