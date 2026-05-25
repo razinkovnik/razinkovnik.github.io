@@ -26,13 +26,10 @@
                 </div>
               </div>
             </div>
-            <div class="flex-1">
-              <h3 class="font-semibold text-lg">{{ group.title }}</h3>
-              <p class="text-sm text-muted-foreground mt-1">
-                Регионы: {{ getRegions(group).join(', ') }}
-              </p>
-              <p v-if="group.examples.length > 0" class="text-xs text-primary mt-1 font-medium">
-                Показаны ключевые проекты из портфолио
+            <div class="flex-1 min-w-0">
+              <h3 class="font-semibold text-base md:text-lg truncate">{{ group.title }}</h3>
+              <p class="text-xs text-muted-foreground mt-0.5 hidden sm:block">
+                {{ getRegions(group).join(', ') }}
               </p>
             </div>
           </div>
