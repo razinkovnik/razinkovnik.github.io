@@ -6,8 +6,8 @@
     >
       <!-- Заголовок -->
       <div class="sticky top-0 z-10 bg-surface/90 backdrop-blur p-5 border-b border-border">
-        <div class="flex justify-between items-start">
-          <h2 class="text-xl font-semibold text-primary">{{ project.name }}</h2>
+        <div class="flex justify-between items-start gap-3">
+          <h2 class="text-base sm:text-lg md:text-xl font-semibold text-primary leading-tight">{{ project.name }}</h2>
           <button
             @click="close"
             class="p-1.5 rounded-full hover:bg-muted transition-colors"
