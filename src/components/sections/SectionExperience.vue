@@ -20,7 +20,7 @@
 
         <!-- Основные направления деятельности -->
         <div class="md:w-2/3">
-          <h4 class="font-medium text-lg mb-3">Чем я занимаюсь</h4>
+          <h4 class="font-medium text-lg mb-3">Ключевые компетенции</h4>
           <ul class="space-y-3">
             <li v-for="(task, index) in mainTasks" :key="index" class="flex items-start gap-2">
               <span class="text-accent mt-1">•</span>
@@ -35,7 +35,7 @@
     <!-- Если у вас есть конкретные даты назначения на должности, можно раскомментировать -->
 
     <div class="mt-10">
-      <h3 class="text-xl font-semibold mb-4">Хронология должностей</h3>
+      <h3 class="text-xl font-semibold mb-4">Карьерный путь</h3>
       <div class="space-y-4">
         <div v-for="(role, index) in roles" :key="index" class="bg-surface rounded-lg p-4 border border-border">
           <div class="flex justify-between items-start">
