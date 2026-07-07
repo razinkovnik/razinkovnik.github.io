@@ -4126,8 +4126,14 @@ var SectionExperience_vue_vue_type_script_setup_true_lang_default = /* @__PURE__
 			{
 				title: "Руководитель отдела проектирования",
 				company: "ООО «Трансэнергострой»",
-				period: "2011 — настоящее время",
+				period: "2011 — 2026",
 				description: "Выполнение проектов в нефтегазовой области, управление командой до 10 человек."
+			},
+			{
+				title: "Ведущий инженер",
+				company: "АО «Мосгаз»",
+				period: "2026 — настоящее время",
+				description: "Разработка проектов газификации в Новой Москве."
 			}
 		];
 		return (_ctx, _push, _parent, _attrs) => {
